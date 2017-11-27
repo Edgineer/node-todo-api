@@ -16,14 +16,20 @@ const users = [{
 }, {
   _id: userTwoId,
   username: 'amorfalso',
-  password: 'miclave'
+  password: 'miclave',
+  tokens: [{
+    access: 'auth',
+    token: jwt.sign({_id:userTwoId, access:'auth'},'secretvalue').toString()
+  }]
 }];
 
 const todos = [{
   _id: new ObjectID(),
+  _creator: userOneId,
   text: "First test todo"
   }, {
     _id: new ObjectID(),
+    _creator: userTwoId,
     text: "Second test todo",
     completed: "true",
     completedAt: 213
